@@ -1,24 +1,15 @@
-# Mdi::BagValidator
+Mdi::BagValidator
+=================
 
-TODO: Write a gem description
+## Overview
 
-## Installation
+This is an experimental [BagIt](https://tools.ietf.org/html/draft-kunze-bagit-06) "worker" gem that connects to a [RabbitMQ](https://www.rabbitmq.com/)
+message broker exchange looking for work, executes the validation operation, and then sends the result to a topic exchange.
 
-Add this line to your application's Gemfile:
 
-    gem 'mdi-bag_validator'
+## Status
+IN DEVELOPMENT
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install mdi-bag_validator
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
