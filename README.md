@@ -12,7 +12,7 @@ This is an experimental [BagIt](https://tools.ietf.org/html/draft-kunze-bagit-06
 
 ## Status
 #### IN DEVELOPMENT
-Currently walking through [https://github.com/jondot/sneakers/wiki/How-to:-running-a-stand-alone-worker](this) tutorial.
+Currently walking through [this](https://github.com/jondot/sneakers/wiki/How-to:-running-a-stand-alone-worker) tutorial.
 
 
 ## Contributing
