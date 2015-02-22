@@ -4,7 +4,6 @@ require 'mdi/bag_validator'
 require 'bundler/setup'
 root = File.expand_path('../lib',File.dirname(__FILE__))
 $: << root
-require 'mdi-bag_validator'
 require 'sneakers/runner'
 require 'logger'
 
@@ -12,5 +11,5 @@ require 'logger'
 Sneakers.configure( :amqp => ENV['AMQP_URL'], :daemonize => false, :log => STDOUT )
 Sneakers.logger.level = Logger::INFO
 
-r = Sneakers::Runner.new([ Mdi::BagValidator ])
+r = Sneakers::Runner.new([ Mdi::BagValidator::Base ])
 r.run
