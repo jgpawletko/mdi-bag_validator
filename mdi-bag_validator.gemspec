@@ -22,4 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
 
   spec.add_dependency "sneakers", "~> 1.0"
+  spec.add_dependency "sneakers", "~> 1.0"
+  spec.add_dependency "foreman"
 end
