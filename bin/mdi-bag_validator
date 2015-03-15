@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'mdi/bag_validator'
-require 'bundler/setup'
 root = File.expand_path('../lib',File.dirname(__FILE__))
 $: << root
+require 'mdi/bag_validator'
+require 'bundler/setup'
 require 'sneakers/runner'
 require 'logger'
 
