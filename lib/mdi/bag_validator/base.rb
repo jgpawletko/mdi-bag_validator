@@ -19,7 +19,6 @@ module Mdi
       def work(msg)
         puts "received #{msg}"
         ack!
-
       end
     end
   end
