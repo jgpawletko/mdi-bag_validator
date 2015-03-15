@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require "bunny"
+
+conn = Bunny.new
+conn.start
+
+ch = conn.create_channel
+
+q = ch.queue("bag_validation", durable: true)
+
+fail "missing path to bag" if ARGV.empty?
+
+msg = ARGV[0]
+
+q.publish(msg, :persistent => true)
+puts " [x] Published #{msg}"
+
+conn.close
+
