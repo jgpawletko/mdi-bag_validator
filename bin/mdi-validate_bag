@@ -3,7 +3,7 @@
 
 require "bunny"
 
-conn = Bunny.new
+conn = Bunny.new(host: ENV['AMQP_URL'])
 conn.start
 
 ch = conn.create_channel
