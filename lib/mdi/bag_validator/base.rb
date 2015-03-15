@@ -7,6 +7,7 @@ module Mdi
       include Sneakers::Worker
       from_queue 'bag_validation'
       opts = {   :env => 'test',
+                 :amqp => ENV['AMQP_URL'] || 'amqp:://localhost',
                  :durable => true,
                  :ack => true,
                  :threads => 1,
