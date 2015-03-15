@@ -19,14 +19,17 @@ module Mdi
       Sneakers.configure(opts)
 
       def work(msg)
-        exe = ENV['BAG_EXECUTABLE'] || '/usr/local/bin/bag'
+        cmd = ENV['BAG_EXECUTABLE'] || '/usr/local/bin/bag verifyvalid'
         puts "============================================================="
         puts "received #{msg}"
-        o,e,s = Open3.capture3("#{exe} verifyvalid #{msg}")
+        o,e,s = Open3.capture3("#{cmd} #{msg}")
+        puts "STDOUT:"
         puts "#{o}"
         puts "-------------------------------------------------------------"
+        puts "STDERR:"
         puts "#{e}"
         puts "-------------------------------------------------------------"
+        puts "STATUS:"
         puts "#{s}"
         puts "============================================================="
         ack!
