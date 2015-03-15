@@ -18,9 +18,10 @@ module Mdi
       Sneakers.configure(opts)
 
       def work(msg)
+        exe = ENV['BAG_EXECUTABLE'] || '/usr/local/bin/bag'
         puts "============================================================="
         puts "received #{msg}"
-        o,e,s = Open3.capture3("/usr/local/bin/bag verifyvalid #{msg}")
+        o,e,s = Open3.capture3("#{exe} verifyvalid #{msg}")
         puts "#{o}"
         puts "-------------------------------------------------------------"
         puts "#{e}"
