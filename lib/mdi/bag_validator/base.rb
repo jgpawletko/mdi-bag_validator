@@ -32,6 +32,8 @@ module Mdi
         puts "STATUS:"
         puts "#{s}"
         puts "============================================================="
+        p = Sneakers::Publisher.new
+        p.publish('test message', to_queue: 'results')
         ack!
       end
     end
