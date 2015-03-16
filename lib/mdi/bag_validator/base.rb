@@ -32,6 +32,8 @@ module Mdi
         puts "STATUS:"
         puts "#{s}"
         puts "============================================================="
+        result_msg = "bag_validation of :#{msg}: " + (s == 0 ? 'passed' : 'FAILED')
+        publish(result_msg, to_queue: 'results', routing_key: 'results')
         ack!
       end
     end

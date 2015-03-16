@@ -3,25 +3,23 @@
 
 require "bunny"
 
-if ARGV.empty?
-  abort "Usage: #{$0} [binding key]"
-end
+# if ARGV.empty?
+#   abort "Usage: #{$0} [binding key]"
+# end
 
 host = ENV['MB_REMOTE_HOST'] || 'localhost'
 
 conn = Bunny.new(host: host)
 conn.start
 
-ch  = conn.create_channel
-x   = ch.topic("results")
-q   = ch.queue("", :exclusive => true)
+ch = conn.create_channel
+x  = ch.direct("dummy", durable: true)
+q  = ch.queue("results")
 
-ARGV.each do |severity|
-  q.bind(x, :routing_key => severity)
-  puts "     binding q to x with key: #{severity}"
-end
+q.bind(x, :routing_key => 'results')
 
-puts " [*] Waiting for logs. To exit press CTRL+C"
+puts " [*] Waiting for messages in #{q.name}. To exit press CTRL+C"
+
 
 msgs_handled = 0
 begin
