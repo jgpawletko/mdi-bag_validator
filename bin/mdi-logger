@@ -13,10 +13,10 @@ conn = Bunny.new(host: host)
 conn.start
 
 ch = conn.create_channel
-x  = ch.direct("dummy", durable: true)
-q  = ch.queue("results")
+x  = ch.topic('rstar_topic', durable: true)
+q  = ch.queue("")
 
-q.bind(x, :routing_key => 'results')
+q.bind(x, :routing_key => 'rstar.bag_validator.result.*')
 
 puts " [*] Waiting for messages in #{q.name}. To exit press CTRL+C"
 

@@ -13,7 +13,8 @@ module Mdi
                  :threads => 1,
                  :prefetch => 1,
                  :timeout_job_after => 100000000,
-                 :exchange => 'dummy',
+                 :exchange => 'rstar_direct',
+                 :exchange_type => :direct,
                  :heartbeat_interval => 5
              }
       Sneakers.configure(opts)
@@ -33,8 +34,19 @@ module Mdi
         puts "#{s}"
         puts "============================================================="
         result_msg = "bag_validation of :#{msg}: " + (s == 0 ? 'passed' : 'FAILED')
-        publish(result_msg, to_queue: 'results', routing_key: 'results')
+        publisher.publish(result_msg, routing_key: 'rstar.bag_validator.result.foo')
         ack!
+      end
+      def publisher
+        @publisher ||= Sneakers::Publisher.new(publisher_opts)
+      end
+      def publisher_opts
+        { exchange: 'rstar_topic',
+          exchange_type: :topic,
+          routing_key:   'rstar.bag_validator.result.foo',
+          durable: true,
+          ack: true
+        }
       end
     end
   end
