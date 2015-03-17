@@ -39,6 +39,8 @@ $ nohup ./bin/mdi-logger > log/mdi-logger.log &
 
 #### bag validation message producer
 ```
+$ pwd
+/path/to/mdi-bag_validator
 $ export MB_REMOTE_HOST='your.broker.example.com'
 $ ./bin/mdi-validate_bag /path/to/bag/root
 ```
