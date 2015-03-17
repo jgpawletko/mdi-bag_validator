@@ -18,17 +18,19 @@ q  = ch.queue("")
 
 q.bind(x, :routing_key => 'rstar.bag_validator.result.*')
 
-puts " [*] Waiting for messages in #{q.name}. To exit press CTRL+C"
-
+$stdout.puts " [*] Waiting for messages in #{q.name}. To exit press CTRL+C"
+$stdout.flush
 
 msgs_handled = 0
 begin
   q.subscribe(:block => true) do |delivery_info, properties, body|
-    puts " [x] #{delivery_info.routing_key}:#{body}"
+    $stdout.puts " [x] #{delivery_info.routing_key}:#{body}"
+    $stdout.flush
     msgs_handled += 1
   end
 rescue Interrupt => _
   $stderr.puts("========> Handled #{msgs_handled} messages <========")
+  $stderr.flush
   ch.close
   conn.close
 end
