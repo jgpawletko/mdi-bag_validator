@@ -13,6 +13,17 @@ This is an experimental [BagIt](https://tools.ietf.org/html/draft-kunze-bagit-06
 ## Status
 #### IN DEVELOPMENT
 Currently walking through [this](https://github.com/jondot/sneakers/wiki/How-to:-running-a-stand-alone-worker) tutorial.
+N.B. This code is a ROUGH PROOF OF CONCEPT! There is no test suite. You have been warned. Have a nice day :) .
+
+
+## Setup
+I use [rvm](https://rvm.io/), so this is my approach:
+```
+$ cd /path/to/mdi-bag_validator
+$ rvm use 2.2
+$ rvm --ruby-version gemset use mdi-bag_validator --create
+$ bundle
+```
 
 
 ## Usage
