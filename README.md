@@ -13,3 +13,26 @@ This is an experimental [BagIt](https://tools.ietf.org/html/draft-kunze-bagit-06
 ## Status
 #### IN DEVELOPMENT
 Currently walking through [this](https://github.com/jondot/sneakers/wiki/How-to:-running-a-stand-alone-worker) tutorial.
+
+
+## Usage
+#### bag validator workers
+```
+$ pwd
+/path/to/mdi-bag_validator
+$ export BAG_EXECUTABLE='/your/path/to/your/bag/validator/bag verifyvalid'
+$ export AMQP_URL='amqp://your.broker.example.com'
+$ nohup foreman start > log/mdi-bag_validator.log &
+```
+
+#### logger
+```
+$ export MB_REMOTE_HOST='your.broker.example.com'
+$ nohup ./bin/mdi-logger > log/mdi-logger.log &
+```
+
+#### bag validation message producer
+```
+$ export MB_REMOTE_HOST='your.broker.example.com'
+$ ./bin/mdi-validate_bag /path/to/bag/root
+```
