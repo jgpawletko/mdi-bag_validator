@@ -8,7 +8,7 @@ require 'sneakers/runner'
 require 'logger'
 
 
-Sneakers.configure( :amqp => ENV['AMQP_URL'], :daemonize => false, :log => STDOUT )
+Sneakers.configure( :amqp => ENV['AMQP_URL'], :daemonize => false, :log => STDOUT, :workers => 2 )
 Sneakers.logger.level = Logger::INFO
 
 r = Sneakers::Runner.new([ Mdi::BagValidator::Base ])
