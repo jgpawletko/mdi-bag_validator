@@ -16,7 +16,7 @@ ch = conn.create_channel
 x  = ch.topic('rstar_topic', durable: true)
 q  = ch.queue("")
 
-q.bind(x, :routing_key => 'rstar.bag_validator.result.*')
+q.bind(x, :routing_key => 'rstar.*.result.#')
 
 $stdout.puts " [*] Waiting for messages in #{q.name}. To exit press CTRL+C"
 $stdout.flush
