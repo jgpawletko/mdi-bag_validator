@@ -31,12 +31,14 @@ $ bundle
 ```
 $ pwd
 /path/to/mdi-bag_validator
-$ export BAG_EXECUTABLE='/your/path/to/your/bag/validator/cmd with-options'
+$ export MDI_EXECUTABLE='/your/path/to/your/bag/validator/cmd with-options'
+$ export MDI_SERVICE_NAME='my_cool_service'
 $ export AMQP_URL='amqp://your.broker.example.com'
 $ nohup foreman start > log/mdi-bag_validator.log &
 
 
-e.g.,   $ export BAG_EXECUTABLE='/usr/local/loc-xfer/bin/bag verifyvalid'
+e.g.,   $ export MDI_EXECUTABLE='/usr/local/loc-xfer/bin/bag verifyvalid'
+        $ export MDI_SERVICE_NAME='bag_validation'
 
 ```
 
