@@ -1,5 +1,6 @@
 require 'sneakers'
 require 'open3'
+require 'socket'
 
 module Mdi
   module BagValidator
@@ -20,7 +21,9 @@ module Mdi
       Sneakers.configure(opts)
 
       def work(msg)
-        cmd = ENV['BAG_EXECUTABLE'] || '/usr/local/bin/bag verifyvalid'
+        cmd      = ENV['MDI_EXECUTABLE'] || '/usr/local/bin/bag verifyvalid'
+        hostname = ENV['HOSTNAME']
+        service_name = ENV['MDI_SERVICE_NAME'] || File.basename(cmd)
         puts "============================================================="
         puts "received #{msg}"
         o,e,s = Open3.capture3("#{cmd} #{msg}")
@@ -33,19 +36,19 @@ module Mdi
         puts "STATUS:"
         puts "#{s}"
         puts "============================================================="
-        result_msg = "bag_validation of :#{msg}: " + (s == 0 ? 'passed' : 'FAILED')
-        publisher.publish(result_msg, routing_key: 'rstar.bag_validator.result.foo')
+        result_msg = "#{service_name}:#{hostname}:#{msg}:" + (s == 0 ? 'passed' : 'FAILED') + ":#{o}"
+        publisher.publish(result_msg, routing_key: 'rstar.bag_validator.result')
         ack!
       end
       def publisher
         @publisher ||= Sneakers::Publisher.new(publisher_opts)
       end
       def publisher_opts
-        { exchange: 'rstar_topic',
+        { exchange:      'rstar_topic',
           exchange_type: :topic,
-          routing_key:   'rstar.bag_validator.result.foo',
-          durable: true,
-          ack: true
+          routing_key:   'rstar.bag_validator.result',
+          durable:       true,
+          ack:           true
         }
       end
     end
