@@ -36,7 +36,7 @@ module Mdi
         puts "STATUS:"
         puts "#{s}"
         puts "============================================================="
-        result_msg = "#{service_name}:#{hostname}:#{msg}:" + (s == 0 ? 'passed' : 'FAILED') + ":#{o}"
+        result_msg = "#{service_name}:#{hostname}:#{msg}:" + (s == 0 ? 'passed' : 'FAILED')
         publisher.publish(result_msg, routing_key: 'rstar.bag_validator.result')
         ack!
       end
