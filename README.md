@@ -46,7 +46,7 @@ e.g.,   $ export MDI_EXECUTABLE='/usr/local/loc-xfer/bin/bag verifyvalid'
 ```
 $ pwd
 /path/to/mdi-bag_validator
-$ export MB_REMOTE_HOST='your.broker.example.com'
+$ export AMQP_HOST='your.broker.example.com'
 $ nohup ./bin/mdi-logger > log/mdi-logger.log &
 ```
 
@@ -54,6 +54,6 @@ $ nohup ./bin/mdi-logger > log/mdi-logger.log &
 ```
 $ pwd
 /path/to/mdi-bag_validator
-$ export MB_REMOTE_HOST='your.broker.example.com'
+$ export AMQP_HOST='your.broker.example.com'
 $ ./bin/mdi-validate_bag /path/to/bag/root
 ```

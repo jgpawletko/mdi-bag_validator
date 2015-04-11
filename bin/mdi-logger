@@ -7,7 +7,7 @@ require "bunny"
 #   abort "Usage: #{$0} [binding key]"
 # end
 
-host = ENV['MB_REMOTE_HOST'] || 'localhost'
+host = ENV['AMQP_HOST'] || 'localhost'
 
 conn = Bunny.new(host: host)
 conn.start
